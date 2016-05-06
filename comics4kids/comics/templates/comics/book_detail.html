@@ -1,0 +1,10 @@
+{% extends "comics/base.html" %}
+{% block title %}Book: {{ object.title }}{% endblock %}
+{% block content %}
+<div class="page-header"><h1>{{ object.title }}</h1></div>
+	{%  for category in object.category.all %}<span class="label label-info">{{ category.name }}</span>{% empty %}<span class="label label-default">No categories</span>{% endfor %}
+	<span class="label label-primary">Reading Level: {{ object.reading_level|default:"Unknown"}}</span>
+	<p>
+    	{{ object.description }}
+	</p>
+{% endblock %}

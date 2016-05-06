@@ -33,9 +33,11 @@ class ReadingLevel(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=100, unique=True)
-    author = models.ForeignKey(Author, models.SET_NULL, null=True, blank=True, default=None)
-    category = models.ManyToManyField(Category)
-    reading_level = models.ForeignKey(ReadingLevel, models.SET_NULL, null=True, blank=True, default=None)
+    author = models.ForeignKey(Author, models.SET_NULL,
+                               null=True, blank=True, default=None)
+    category = models.ManyToManyField(Category, default=None)
+    reading_level = models.ForeignKey(ReadingLevel, models.SET_NULL,
+                                      null=True, blank=True, default=None)
     description = models.TextField()
     class Meta:
         ordering = ["title"]

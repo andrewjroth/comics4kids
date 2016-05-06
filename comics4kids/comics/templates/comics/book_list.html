@@ -1,0 +1,17 @@
+{% extends "comics/base.html" %}
+{% block title %}List of Books{% endblock %}
+{% block content %}
+<div class="page-header"><h1>All Books</h1></div>
+{% for book in object_list %}
+<div>
+    <h2><a href="{% url 'book-detail' pk=book.pk %}">{{ book.title }}</a><small>{{ book.author }}</small></h2>
+	{%  for category in book.category.all %}<span class="label label-info">{{ category.name }}</span>{% empty %}<span class="label label-default">no categories</span>{% endfor %}
+	<span class="label label-primary">Reading Level: {{ book.reading_level|default:"unknown"}}</span>
+	<p>
+    	{{ book.description|truncatewords:20 }}
+	</p>
+</div>
+{% empty %}
+<div><p>No books yet...</p></div>
+{% endfor %}
+{% endblock %}
